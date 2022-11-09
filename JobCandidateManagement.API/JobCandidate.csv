@@ -1,0 +1,4 @@
+FirstName,LastName,PhoneNumber,EmailAddress,TimeInterval,LinkedInUrl,GitHubUrl,Comments
+Mike,Johnson,100-010-022,mike@abc.com,03:20:30,https://www.linkedin.com/in/mike-johnson,https://www.github.com/MJohnson,This candidate had applied for a job before.
+Mary,Henricks,111-010-022,maryhenry@abc.com,03:20:30,https://www.linkedin.com/in/mary-henry,https://www.github.com/MHenry,This candidate had applied for a job before.
+Sam,Andrew,100-010-022,samandrew@abc.com,03:20:30,https://www.linkedin.com/in/sam-andrew,https://www.github.com/SAndrew,This candidate had applied for a job before.

@@ -7,7 +7,7 @@ using JobCandidateManagement.DataAccess.Entities;
 
 namespace JobCandidateManagement.API.Controllers
 {
-    [Route("api/jobcandidates")]
+    [Route("api/v1/jobcandidates")]
     [ApiController]
     public class JobCandidateController : ControllerBase
     {

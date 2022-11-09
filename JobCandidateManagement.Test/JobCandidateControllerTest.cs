@@ -45,8 +45,22 @@ namespace JobCandidateManagement.Test
             //Act
             var response = _jobCandidateController.UpdateJobCandidate(_jobCandidateDTO.EmailAddress, _jobCandidateDTO);
 
-            //Assert
+            //Assert          
             Assert.IsType<OkResult>(response);
+
+            var result = _jobCandidateService.GetJobCandidate(_jobCandidateDTO.EmailAddress);
+            Assert.NotNull(result);
+            if (result != null)
+            {
+                Assert.Equal(_jobCandidateDTO.FirstName, result.FirstName);
+                Assert.Equal(_jobCandidateDTO.LastName, result.LastName);
+                Assert.Equal(_jobCandidateDTO.PhoneNumber, result.PhoneNumber);
+                Assert.Equal(_jobCandidateDTO.EmailAddress, result.EmailAddress);
+                Assert.Equal(_jobCandidateDTO.TimeInterval, result.TimeInterval);
+                Assert.Equal(_jobCandidateDTO.LinkedInUrl, result.LinkedInUrl);
+                Assert.Equal(_jobCandidateDTO.GitHubUrl, result.GitHubUrl);
+                Assert.Equal(_jobCandidateDTO.Comments, result.Comments);
+            }
         }
 
         [Fact]
@@ -70,8 +84,20 @@ namespace JobCandidateManagement.Test
 
             //Assert  
             Assert.IsType<OkResult>(data);
+
+            var result = _jobCandidateService.GetJobCandidate(_jobCandidateDTO.EmailAddress);
+            Assert.NotNull(result);
+            if (result != null)
+            {
+                Assert.Equal(_jobCandidateDTO.FirstName, result.FirstName);
+                Assert.Equal(_jobCandidateDTO.LastName, result.LastName);
+                Assert.Equal(_jobCandidateDTO.PhoneNumber, result.PhoneNumber);
+                Assert.Equal(_jobCandidateDTO.EmailAddress, result.EmailAddress);
+                Assert.Equal(_jobCandidateDTO.TimeInterval, result.TimeInterval);
+                Assert.Equal(_jobCandidateDTO.LinkedInUrl, result.LinkedInUrl);
+                Assert.Equal(_jobCandidateDTO.GitHubUrl, result.GitHubUrl);
+                Assert.Equal(_jobCandidateDTO.Comments, result.Comments);
+            }
         }
-
-
     }
 }

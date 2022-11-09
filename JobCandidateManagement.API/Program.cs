@@ -1,6 +1,17 @@
 using JobCandidateManagement.Business;
 using JobCandidateManagement.DataAccess.Services;
 using System.Reflection;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.OpenApi.Models;
+using Serilog;
+using System.Text;
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.File("logs/jobcandidate.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.SQLite(Environment.CurrentDirectory + @"\log.db")
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 

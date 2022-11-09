@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
+using JobCandidateManagement.API;
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
@@ -40,8 +41,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
+app.ConfigureExceptionHandling();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

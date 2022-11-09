@@ -54,7 +54,7 @@ namespace JobCandidateManagement.DataAccess.Services
         {
             _jobCandidateList.TryAdd(jobCandidate.EmailAddress, jobCandidate);
         }
-        public IEnumerable<JobCandidate> GetAllEmployee()
+        public IEnumerable<JobCandidate> GetAllEmployees()
         {
             return _jobCandidateList.Values.ToList();
         }

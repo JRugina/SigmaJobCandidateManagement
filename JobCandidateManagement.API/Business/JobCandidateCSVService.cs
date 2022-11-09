@@ -24,5 +24,9 @@ namespace JobCandidateManagement.Business
         {
             return  _repository.GetJobCandidate(emailAddress);
         }
+        public IEnumerable<JobCandidate> GetAllEmployees()
+        {
+            return _repository.GetAllEmployees();
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace JobCandidateManagement.DataAccess.Services
         void AddJobCandidate(JobCandidate jobCandidate);
         void UpdateJobCandidate(JobCandidate jobCandidate);
         JobCandidate? GetJobCandidate(string emailAddress);
+        IEnumerable<JobCandidate> GetAllEmployees();
     }
 }

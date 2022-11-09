@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobCandidateManagement.DataAccess.Entities
 {
@@ -14,6 +15,7 @@ namespace JobCandidateManagement.DataAccess.Entities
         public string PhoneNumber { get; set; }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
             ErrorMessage = "Invalid Email Format")]

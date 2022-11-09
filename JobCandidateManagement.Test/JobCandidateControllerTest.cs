@@ -99,5 +99,38 @@ namespace JobCandidateManagement.Test
                 Assert.Equal(_jobCandidateDTO.Comments, result.Comments);
             }
         }
+
+        [Fact]
+        public void ShouldReturnBadRequest_InvalidEmail()
+        {
+            //Arrange
+            _jobCandidateController.ModelState.Clear();
+            _jobCandidateController.ModelState.AddModelError("EmailAddress", "Invalid email address");
+
+            var _jobCandidateUpdateDTO = new JobCandidateUpdateDTO()
+            {
+                FirstName = "Sam",
+                LastName = "Andrew",
+                PhoneNumber = "100-202-123",
+                EmailAddress = "samandrew.xyz.com",
+                TimeInterval = new TimeSpan(2, 14, 18),
+                LinkedInUrl = "https://www.linkedin.com/in/mike-jones",
+                GitHubUrl = "https://www.github.com/MJones",
+                Comments = "New job applicant."
+            };
+
+            //Act
+            var result = _jobCandidateController.UpdateJobCandidate(_jobCandidateUpdateDTO.EmailAddress,
+                _jobCandidateUpdateDTO);
+
+            //Assert
+            Assert.IsType<BadRequestResult>(result);
+
+            //Make sure Name has correct errors
+            Assert.False(_jobCandidateController.ModelState.IsValid);
+            Assert.True(_jobCandidateController.ModelState.ErrorCount > 0);
+            Assert.True(_jobCandidateController.ModelState["EmailAddress"].Errors.Count > 0);
+            Assert.Equal(_jobCandidateController.ModelState["EmailAddress"].Errors[0].ErrorMessage, "Invalid email address");
+        }        
     }
 }

@@ -37,7 +37,7 @@ namespace JobCandidateManagement.API.Controllers
         public IActionResult UpdateJobCandidate(string emailAddress,
             [FromBody] JobCandidateUpdateDTO jobCandidateUpdateDTO)
         {
-            try
+            if (ModelState.IsValid)
             {
                 var jobCandidateFromRepo = _jobCandidateService.GetJobCandidate(emailAddress);
 
@@ -58,10 +58,7 @@ namespace JobCandidateManagement.API.Controllers
 
                 return Ok();
             }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
     }
 }

@@ -13,6 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IJobCandidateService, JobCandidateCSVService>();
 builder.Services.AddScoped<IJobCandidateRepository, JobCandidateCSVRepository>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

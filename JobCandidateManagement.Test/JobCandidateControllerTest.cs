@@ -131,6 +131,37 @@ namespace JobCandidateManagement.Test
             Assert.True(_jobCandidateController.ModelState.ErrorCount > 0);
             Assert.True(_jobCandidateController.ModelState["EmailAddress"].Errors.Count > 0);
             Assert.Equal(_jobCandidateController.ModelState["EmailAddress"].Errors[0].ErrorMessage, "Invalid email address");
-        }        
+        }
+
+        [Fact]
+        public void ShouldReturnBadRequest_MissingRequiredFields()
+        {
+            //Arrange
+            _jobCandidateController.ModelState.Clear();
+            _jobCandidateController.ModelState.AddModelError("FirstName", "The first name is required");
+            _jobCandidateController.ModelState.AddModelError("LastName", "The last name is required");
+            _jobCandidateController.ModelState.AddModelError("EmailAddress", "The email address is required");
+            _jobCandidateController.ModelState.AddModelError("Comments", "Comments are required");
+
+            var _jobCandidateUpdateDTO = new JobCandidateUpdateDTO()
+            {
+                PhoneNumber = "100-202-123",
+                TimeInterval = new TimeSpan(2, 14, 18),
+                LinkedInUrl = "https://www.linkedin.com/in/mike-jones",
+                GitHubUrl = "https://www.github.com/MJones"
+            };
+
+            //Act
+            var result = _jobCandidateController.UpdateJobCandidate(_jobCandidateUpdateDTO.EmailAddress,
+                _jobCandidateUpdateDTO);
+
+            //Assert
+            Assert.IsType<BadRequestResult>(result);
+
+            //Make sure Name has correct errors
+            Assert.False(_jobCandidateController.ModelState.IsValid);
+            Assert.True(_jobCandidateController.ModelState.ErrorCount > 0);
+            Assert.Equal(4, _jobCandidateController.ModelState.ErrorCount);
+        }
     }
 }

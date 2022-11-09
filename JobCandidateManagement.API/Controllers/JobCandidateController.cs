@@ -21,7 +21,19 @@ namespace JobCandidateManagement.API.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Creates a new candidate or update an existing candidate
+        /// </summary>
+        /// <param name="emailAddress">The email address of the candidate</param>
+        /// <param name="jobCandidateUpdateDTO">Candidate details</param>
+        /// <response code="200">Creates or updates a candidate</response>
+        /// <response code="400">If any of the required data is not pressent or is invalid.</response>
+        /// <response code="401">If jwt token provided is invalid.</response>
+        /// <returns>An IActionResult</returns>
         [HttpPut("{emailAddress}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult UpdateJobCandidate(string emailAddress,
             [FromBody] JobCandidateUpdateDTO jobCandidateUpdateDTO)
         {

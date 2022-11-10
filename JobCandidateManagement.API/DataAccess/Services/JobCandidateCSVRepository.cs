@@ -45,7 +45,9 @@ namespace JobCandidateManagement.DataAccess.Services
                     _jobCandidateList.TryAdd(jobCandidate.EmailAddress, jobCandidate);
                 }
             }
+#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             _th.Elapsed += ReplaceCSV;
+#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             _th.Enabled = true;
             _th.AutoReset = true;
             _th.Start();

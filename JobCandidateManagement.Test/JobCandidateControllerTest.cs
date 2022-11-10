@@ -129,8 +129,14 @@ namespace JobCandidateManagement.Test
             //Make sure Name has correct errors
             Assert.False(_jobCandidateController.ModelState.IsValid);
             Assert.True(_jobCandidateController.ModelState.ErrorCount > 0);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             Assert.True(_jobCandidateController.ModelState["EmailAddress"].Errors.Count > 0);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning disable xUnit2000 // Constants and literals should be the expected argument
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
             Assert.Equal(_jobCandidateController.ModelState["EmailAddress"].Errors[0].ErrorMessage, "Invalid email address");
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore xUnit2000 // Constants and literals should be the expected argument
         }
 
         [Fact]
